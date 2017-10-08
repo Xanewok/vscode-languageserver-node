@@ -448,6 +448,7 @@ import * as config from './configuration.proposed';
 import * as folders from './workspaceFolders.proposed';
 import * as implementation from './implementation.proposed';
 import * as typeDefinition from './typeDefinition.proposed';
+import * as progress from './progress.proposed';
 
 export namespace ProposedFeatures {
 	export type ConfigurationFeature = config.ConfigurationFeature;
@@ -456,7 +457,7 @@ export namespace ProposedFeatures {
 
 	export type WorkspaceFoldersFeature = folders.WorkspaceFoldersFeature;
 	export const WorkspaceFoldersFeature = folders.WorkspaceFoldersFeature;
-	export type WorkspaceFolderMiddleware = folders.WorkspaceFolderMiddleware
+	export type WorkspaceFolderMiddleware = folders.WorkspaceFolderMiddleware;
 
 	export type ImplementationFeature = implementation.ImplementationFeature;
 	export const ImplementationFeature = implementation.ImplementationFeature;
@@ -466,12 +467,16 @@ export namespace ProposedFeatures {
 	export const TypeDefinitionFeature = typeDefinition.TypeDefinitionFeature;
 	export type TypeDefinitionMiddleware = typeDefinition.TypeDefinitionMiddleware;
 
+	export type WindowProgressFeature = progress.WindowProgressFeature;
+	export const WindowProgressFeature = progress.WindowProgressFeature;
+
 	export function createAll(client: BaseLanguageClient): (StaticFeature | DynamicFeature<any>)[] {
 		let result: (StaticFeature | DynamicFeature<any>)[] = [];
 		result.push(new WorkspaceFoldersFeature(client));
 		result.push(new ConfigurationFeature(client));
 		result.push(new ImplementationFeature(client));
 		result.push(new TypeDefinitionFeature(client));
+		result.push(new WindowProgressFeature(client));
 		return result;
 	}
 }
