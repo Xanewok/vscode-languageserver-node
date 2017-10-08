@@ -40,7 +40,7 @@ import * as folders from './protocol.workspaceFolders.proposed';
 import * as color from './protocol.colorProvider.proposed';
 import * as implementation from './protocol.implementation.proposed';
 import * as typeDefinition from './protocol.typeDefinition.proposed';
-
+import * as progress from './protocol.progress.proposed';
 
 export namespace Proposed {
 	export type ConfigurationClientCapabilities = config.ConfigurationClientCapabilities;
@@ -89,6 +89,13 @@ export namespace Proposed {
 	export type TypeDefinitionServerCapabilities = typeDefinition.TypeDefinitionServerCapabilities;
 	export namespace TypeDefinitionRequest {
 		export const type: RequestType<TextDocumentPositionParams, Definition | null, void, TextDocumentRegistrationOptions> = typeDefinition.TypeDefinitionRequest.type;
+	}
+
+	export type WindowProgressClientCapabilities = progress.WindowProgressClientCapabilities;
+	export type ProgressParams = progress.ProgressParams;
+	export namespace WindowProgressNotification {
+		export const type = progress.WindowProgressNotification.type;
+		export type HandlerSignature = progress.WindowProgressNotification.HandlerSignature;
 	}
 }
 
